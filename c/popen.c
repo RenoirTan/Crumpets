@@ -28,7 +28,7 @@ int win32find(const char *filename) {
             break;
         }
     }
-    pclose(process);
+    return pclose(process);
 }
 
 int unixfind(const char *filename) {
@@ -52,7 +52,7 @@ int unixfind(const char *filename) {
             break;
         }
     }
-    pclose(process);
+    return pclose(process);
 }
 
 int main(int argc, char **argv) {

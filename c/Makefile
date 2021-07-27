@@ -7,7 +7,8 @@ ifeq ($(OS), Windows_NT)
 	O=.o
 	DL=.dll
 else
-	X=
+	# .exe so that .gitignore doesn't track the resulting binaries.
+	X=.exe
 	O=.o
 	DL=.so
 endif
@@ -25,7 +26,11 @@ popen$(X): popen.c
 	$(CCC) $^ -o $@
 
 injected-app$(X): injected-app.c
+ifeq ($(OS), Windows_NT)
 	$(CCC) $^ -o $@
+else
+	$(CCC) $^ -o $@ -ldl
+endif
 
 libinjected-module$(DL): injected-module.c injected-module.h
 	$(CCC) -shared $^ -o $@

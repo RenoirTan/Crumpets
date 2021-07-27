@@ -2,7 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define DLL_PATH "./libinjected-module.dll"
+#if defined(MS_WINDOWS) || defined(__CYGWIN__)
+#   define DLL_PATH "./libinjected-module.dll"
+#else
+#   define DLL_PATH "./libinjected-module.so"
+#endif
 #define HYPOTHENUSE "hypothenuse"
 
 typedef void* shared_lib_t;
