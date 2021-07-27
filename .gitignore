@@ -1,3 +1,7 @@
 .vscode/
 rust/**/target/
 *.exe
+*.dll
+*.o
+*.so
+*.a
