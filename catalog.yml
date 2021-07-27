@@ -1,0 +1,66 @@
+languages:
+  - 
+    language: c
+    experiments:
+      -
+        name: clstty
+        files:
+          - clstty.c
+        description: |
+          Test out what happens when I close stdin, stdout and stderr.
+      -
+        name: injected
+        files:
+          - injected-app.c
+          - injected-module.h
+          - injected-module.c
+        description: |
+          Try and load a dynamic library without linking to it during compile-time.
+      -
+        name: popen
+        files:
+          - popen.c
+        description: |
+          Open a process and read the data from it.
+  -
+    language: c++
+    experiments:
+      -
+        name: concepts
+        files:
+          - concepts.cpp
+        description: |
+          Test out the shiny new C++20 concepts.
+  -
+    language: javascript
+    experiments:
+      -
+        name: nontransitivity
+        files:
+          - nontransitivity.js
+        description: |
+          Complain about Javascript's duck typing.
+  -
+    language: python
+    experiments:
+      -
+        name: metaclasses
+        files:
+          - metaclasses.py
+        description: |
+          Test out metaclasses.
+      -
+        name: pattern-matching
+        files:
+          - pattern_matching.py
+        description: |
+          Try out Python 3.10's new pattern matching feature.
+  -
+    language: rust
+    experiments:
+      -
+        name: cffi
+        files:
+          - libcffi-sys/*
+        description: |
+          Try and bind a C library from Rust.
