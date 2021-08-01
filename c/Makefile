@@ -1,5 +1,5 @@
 CC=gcc
-CCFLG=-m64 -Wall -fPIC -L/usr/lib
+CCFLG=-m64 -Wall -fPIC -L/usr/lib -I/usr/include
 CCC=$(CC) $(CCFLG)
 
 PKGCONF=pkg-config
@@ -23,7 +23,7 @@ endif
 .PHONY: all
 
 all: clstty$(X) popen$(X) injected-app$(X) libinjected-module$(DL)
-all: glib-glist$(X) glib-gslist$(X)
+all: glib-glist$(X) glib-gslist$(X) argp$(X)
 
 
 clstty$(X): clstty.c
@@ -34,7 +34,7 @@ popen$(X): popen.c
 
 injected-app$(X): injected-app.c
 ifeq ($(OS), Windows_NT)
-	$(CCC) $^ -o $@
+	$(CCC) $^ -o $@ -ldl
 else
 	$(CCC) $^ -o $@ -ldl
 endif
@@ -47,3 +47,6 @@ glib-glist$(X): glib-glist.c
 
 glib-gslist$(X): glib-gslist.c
 	$(CCC) $^ -o $@ $$($(PKGCONFC) $(LIBGLIB))
+
+argp$(X): argp.c
+	$(CCC) $^ -o $@ -largp

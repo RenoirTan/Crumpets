@@ -29,6 +29,12 @@ languages:
           - glib-gslist.c
         description: |
           Try out Glib.
+      -
+        name: argp
+        files:
+          - argp.c
+        description: |
+          Try out argp.
   -
     language: c++
     experiments:
