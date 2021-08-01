@@ -20,7 +20,10 @@ else
 endif
 
 
-.PHONY: all
+.PHONY: all clean
+
+clean:
+	rm -f *.exe *.dll *.o *.so
 
 all: clstty$(X) popen$(X) injected-app$(X) libinjected-module$(DL)
 all: glib-glist$(X) glib-gslist$(X) argp$(X)
