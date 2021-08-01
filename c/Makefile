@@ -2,6 +2,12 @@ CC=gcc
 CCFLG=-m64 -Wall -fPIC -L/usr/lib
 CCC=$(CC) $(CCFLG)
 
+PKGCONF=pkg-config
+PKGCONFFLG=--cflags --libs
+PKGCONFC=$(PKGCONF) $(PKGCONFFLG)
+
+LIBGLIB=glib-2.0
+
 ifeq ($(OS), Windows_NT)
 	X=.exe
 	O=.o
@@ -17,6 +23,7 @@ endif
 .PHONY: all
 
 all: clstty$(X) popen$(X) injected-app$(X) libinjected-module$(DL)
+all: glib-glist$(X) glib-gslist$(X)
 
 
 clstty$(X): clstty.c
@@ -34,3 +41,9 @@ endif
 
 libinjected-module$(DL): injected-module.c injected-module.h
 	$(CCC) -shared $^ -o $@
+
+glib-glist$(X): glib-glist.c
+	$(CCC) $^ -o $@ $$($(PKGCONFC) $(LIBGLIB))
+
+glib-gslist$(X): glib-gslist.c
+	$(CCC) $^ -o $@ $$($(PKGCONFC) $(LIBGLIB))
