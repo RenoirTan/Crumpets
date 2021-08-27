@@ -51,5 +51,8 @@ glib-glist$(X): glib-glist.c
 glib-gslist$(X): glib-gslist.c
 	$(CCC) $^ -o $@ $$($(PKGCONFC) $(LIBGLIB))
 
+glib-ghashtable$(X): glib-ghashtable.c
+	$(CCC) $^ -o $@ $$($(PKGCONFC) $(LIBGLIB))
+
 argp$(X): argp.c
 	$(CCC) $^ -o $@ -largp
