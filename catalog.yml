@@ -27,6 +27,7 @@ languages:
         files:
           - glib-glist.c
           - glib-gslist.c
+          - glib-ghashtable.c
         description: |
           Try out Glib.
       -
