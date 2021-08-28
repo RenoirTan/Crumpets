@@ -7,6 +7,7 @@ PKGCONFFLG=--cflags --libs
 PKGCONFC=$(PKGCONF) $(PKGCONFFLG)
 
 LIBGLIB=glib-2.0
+LIBGMP=gmp
 
 ifeq ($(OS), Windows_NT)
 	X=.exe
@@ -56,3 +57,6 @@ glib-ghashtable$(X): glib-ghashtable.c
 
 argp$(X): argp.c
 	$(CCC) $^ -o $@ -largp
+
+gmp-integer$(X): gmp-integer.c
+	$(CCC) $^ -o $@ -I/usr/include $$($(PKGCONFC) $(LIBGMP))
