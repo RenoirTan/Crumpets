@@ -31,6 +31,12 @@ languages:
         description: |
           Try out Glib.
       -
+        name: gmp
+        files:
+          - gmp-integer.c
+        description: |
+          Try out the GNU MP library.
+      -
         name: argp
         files:
           - argp.c
