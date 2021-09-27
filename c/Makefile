@@ -59,4 +59,4 @@ argp$(X): argp.c
 	$(CCC) $^ -o $@ -largp
 
 gmp-integer$(X): gmp-integer.c
-	$(CCC) $^ -o $@ -I/usr/include $$($(PKGCONFC) $(LIBGMP))
+	$(CCC) $^ -o $@ $$($(PKGCONFC) $(LIBGMP))
