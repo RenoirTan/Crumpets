@@ -24,10 +24,16 @@ LDC=$(LD) $(LDFLG)
 clean:
 	rm -f *.exe *.dll *.o *.so
 
-all: hello$(X)
+all: hello$(X) control-flow$(X)
 
 hello$(X): hello$(O)
 	$(LDC) $^ -o $@
 
 hello$(O): hello.s
+	$(ASC) $^ -o $@
+
+control-flow$(X): control-flow$(O)
+	$(LDC) $^ -o $@
+
+control-flow$(O): control-flow.s
 	$(ASC) $^ -o $@

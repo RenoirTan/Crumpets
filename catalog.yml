@@ -8,6 +8,12 @@ languages:
           - hello.s
         description: |
           Hello world in x86 assembly
+      -
+        name: control-flow
+        files:
+          - control-flow.s
+        description: |
+          Control flow
   - 
     language: c
     experiments:
