@@ -1,4 +1,13 @@
 languages:
+  -
+    language: asm-x86
+    experiments:
+      -
+        name: hello
+        files:
+          - hello.s
+        description: |
+          Hello world in x86 assembly
   - 
     language: c
     experiments:
