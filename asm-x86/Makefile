@@ -24,7 +24,7 @@ LDC=$(LD) $(LDFLG)
 clean:
 	rm -f *.exe *.dll *.o *.so
 
-all: hello$(X) control-flow$(X)
+all: hello$(X) control-flow$(X) strlen$(X)
 
 hello$(X): hello$(O)
 	$(LDC) $^ -o $@
@@ -37,3 +37,9 @@ control-flow$(X): control-flow$(O)
 
 control-flow$(O): control-flow.s
 	$(ASC) $^ -o $@
+
+strlen$(O): strlen.s
+	$(ASC) $^ -o $@
+
+strlen$(X): strlen$(O)
+	$(LDC) $^ -o $@
