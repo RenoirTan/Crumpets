@@ -17,6 +17,4 @@ _start:
     mov eax, 4
     int 0x80
     
-    mov ebx, 0
-    mov eax, 1
-    int 0x80
+    call exit_ok

@@ -23,3 +23,14 @@ __strlen_res:
     sub eax, ebx ; eax -= ebx
     pop ebx ; pop the original value of ebx from the stack into ebx
     ret ; give control back to the caller
+
+exit_ok:
+    ; void exit_ok(void)
+
+    push eax
+    push ebx
+    mov eax, 1
+    mov ebx, 0
+    int 0x80
+    pop ebx
+    pop eax
