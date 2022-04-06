@@ -1,7 +1,7 @@
-section .data:
+section .data
     message: db "something", 0xA, 0 ; const char message[] = "something\n\0"
 
-section .text:
+section .text
     global main
     extern printf
 
