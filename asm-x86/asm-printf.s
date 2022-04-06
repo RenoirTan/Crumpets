@@ -6,11 +6,16 @@ section .text:
     extern printf
 
 main:
+    push rbp
+    mov rbp, rsp
+
     ; printf(message)
+    lea rax, [message]
+    mov rdi, rax
     mov rax, 0 ; __VA_ARGS__ magic
-    push message
     call printf
 
     ; return 0
     mov rax, 0
+    leave
     ret
