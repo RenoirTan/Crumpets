@@ -34,9 +34,12 @@ __strlen_res:
 sprint:
     ; void sprint(char *rax)
 
+    ; remember original stack pointer
     push rbp
     mov rbp, rsp
 
+    ; push the values of these 4 registers to the stack since we're going to be
+    ; using them
     push rax ; char *temp_rax = rax
     push rbx ; char *temp_rbx = rbx
     push rcx ; char *temp_rcx = rcx
@@ -47,13 +50,15 @@ sprint:
     mov rdx, rax ; rdx = rax
     mov rbx, 1 ; rbx = 1
     mov rax, 4 ; rax = 4
-    int 0x80 ; sys_write(rax, rbx, rcx, rdx)
+    int 0x80 ; syscall(rax, rbx, rcx, rdx) --> write(rbx, rcx, rdx)
     
+    ; reset 4 registers back to their original values
     pop rdx
     pop rcx
     pop rbx
     pop rax
 
+    ; reset stack pointer to original location
     mov rsp, rbp
     pop rbp
     ret

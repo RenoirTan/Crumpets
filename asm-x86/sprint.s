@@ -8,5 +8,5 @@ section .text
 
 _start:
     mov rax, message
-    call sprint
-    call exit_ok
+    call sprint ; sprint(rax)
+    call exit_ok ; exit_ok()
