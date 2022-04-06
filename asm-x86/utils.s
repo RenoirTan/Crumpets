@@ -9,7 +9,9 @@ strlen:
     ; push the value of ebx onto the stack because we are going to use this
     ; register for some special calculations,
     ; so its value must be preserved on the stack
-    push ebx
+    ; because x86_64 only allows pushing/popping 64-bit registers,
+    ; i have to use rbx instead of ebx
+    push rbx
     mov ebx, eax ; char *ebx = eax
 
 __strlen_iter:
@@ -21,16 +23,16 @@ __strlen_iter:
 
 __strlen_res:
     sub eax, ebx ; eax -= ebx
-    pop ebx ; pop the original value of ebx from the stack into ebx
+    pop rbx ; pop the original value of ebx from the stack into ebx
     ret ; give control back to the caller
 
 exit_ok:
     ; void exit_ok(void)
 
-    push eax
-    push ebx
+    push rax
+    push rbx
     mov eax, 1
     mov ebx, 0
     int 0x80
-    pop ebx
-    pop eax
+    pop rbx
+    pop rax
