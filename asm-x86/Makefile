@@ -2,6 +2,7 @@ ifeq ($(OS), Windows_NT)
 	X=.exe
 	O=.o
 	DL=.dll
+	CCFLG=-fPIC
 	ASFLG=-f win64
 	LDFLG=-m pe-x86-64
 else
@@ -9,9 +10,13 @@ else
 	X=.exe
 	O=.o
 	DL=.so
+	CCFLG=-fPIC
 	ASFLG=-f elf64
 	LDFLG=-m elf_x86_64
 endif
+
+CC=cc
+CCC=$(CC) $(CCFLG)
 
 AS=nasm
 ASC=$(AS) $(ASFLG)
@@ -50,5 +55,5 @@ strlen$(X): strlen$(O) utils$(O)
 asm-printf$(O): asm-printf.s
 	$(ASC) $^ -o $@
 
-asm-printf$(X): asm-printf$(O) utils$(O)
-	$(LDC) $^ -o $@
+asm-printf$(X): asm-printf$(O)
+	$(CCC) $^ -o $@ -static
