@@ -3,27 +3,27 @@
 section .text
 
 strlen:
-    ; size_t strlen(char *eax)
-    ; the return value is stored in eax
+    ; size_t strlen(char *rax)
+    ; the return value is stored in rax
 
-    ; push the value of ebx onto the stack because we are going to use this
+    ; push the value of rbx onto the stack because we are going to use this
     ; register for some special calculations,
     ; so its value must be preserved on the stack
     ; because x86_64 only allows pushing/popping 64-bit registers,
-    ; i have to use rbx instead of ebx
+    ; i have to use rbx instead of rbx
     push rbx
-    mov ebx, eax ; char *ebx = eax
+    mov rbx, rax ; char *rbx = rax
 
 __strlen_iter:
-    cmp byte [eax], 0 ; if (*eax == 0)
+    cmp byte [rax], 0 ; if (*rax == 0)
     jz __strlen_res ; goto __strlen_res
     ; else
-    inc eax ; ++eax
+    inc rax ; ++rax
     jmp __strlen_iter ; continue
 
 __strlen_res:
-    sub eax, ebx ; eax -= ebx
-    pop rbx ; pop the original value of ebx from the stack into ebx
+    sub rax, rbx ; rax -= rbx
+    pop rbx ; pop the original value of rbx from the stack into rbx
     ret ; give control back to the caller
 
 exit_ok:
@@ -31,8 +31,8 @@ exit_ok:
 
     push rax
     push rbx
-    mov eax, 1
-    mov ebx, 0
+    mov rax, 1
+    mov rbx, 0
     int 0x80
     pop rbx
     pop rax
