@@ -29,7 +29,7 @@ LDC=$(LD) $(LDFLG)
 clean:
 	rm -f *.exe *.dll *.o *.so
 
-all: hello$(X) control-flow$(X) strlen$(X) asm-printf$(X)
+all: hello$(X) control-flow$(X) strlen$(X) asm-printf$(X) sprint$(X)
 
 utils$(O): utils.s
 	$(ASC) $^ -o $@
@@ -57,3 +57,9 @@ asm-printf$(O): asm-printf.s
 
 asm-printf$(X): asm-printf$(O)
 	$(CCC) $^ -o $@ -static
+
+sprint$(O): sprint.s
+	$(ASC) $^ -o $@
+
+sprint$(X): sprint$(O) utils$(O)
+	$(LDC) $^ -o $@

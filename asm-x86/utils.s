@@ -6,6 +6,9 @@ strlen:
     ; size_t strlen(char *rax)
     ; the return value is stored in rax
 
+    push rbp
+    mov rbp, rsp
+
     ; push the value of rbx onto the stack because we are going to use this
     ; register for some special calculations,
     ; so its value must be preserved on the stack
@@ -24,7 +27,36 @@ __strlen_iter:
 __strlen_res:
     sub rax, rbx ; rax -= rbx
     pop rbx ; pop the original value of rbx from the stack into rbx
+    mov rsp, rbp
+    pop rbp
     ret ; give control back to the caller
+
+sprint:
+    ; void sprint(char *rax)
+
+    push rbp
+    mov rbp, rsp
+
+    push rax ; char *temp_rax = rax
+    push rbx ; char *temp_rbx = rbx
+    push rcx ; char *temp_rcx = rcx
+    push rdx ; char *temp_rdx = rdx
+
+    mov rcx, rax ; rcx = rax
+    call strlen ; rax = strlen(rax)
+    mov rdx, rax ; rdx = rax
+    mov rbx, 1 ; rbx = 1
+    mov rax, 4 ; rax = 4
+    int 0x80 ; sys_write(rax, rbx, rcx, rdx)
+    
+    pop rdx
+    pop rcx
+    pop rbx
+    pop rax
+
+    mov rsp, rbp
+    pop rbp
+    ret
 
 exit_ok:
     ; void exit_ok(void)
