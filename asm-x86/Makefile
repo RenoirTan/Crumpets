@@ -26,6 +26,9 @@ clean:
 
 all: hello$(X) control-flow$(X) strlen$(X)
 
+utils$(O): utils.s
+	$(ASC) $^ -o $@
+
 hello$(X): hello$(O)
 	$(LDC) $^ -o $@
 
@@ -41,5 +44,5 @@ control-flow$(O): control-flow.s
 strlen$(O): strlen.s
 	$(ASC) $^ -o $@
 
-strlen$(X): strlen$(O)
+strlen$(X): strlen$(O) utils$(O)
 	$(LDC) $^ -o $@
